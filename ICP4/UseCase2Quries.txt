@@ -1,0 +1,23 @@
+Use Case-2
+
+create table olympic (athelete STRING,age INT,country STRING,year STRING,closing STRING,sport STRING,gold INT,silver INT,bronze INT,total INT) row format delimited fields terminated by "\t" stored as textfile;
+
+load data local inpath ‘/home/acadgild/Downloads/olympic_data.csv’ into table olympic;
+
+Queries:
+
+--> Using the dataset list the total number of medals won by each country in swimming.
+select country,SUM(total) from olympic where sport = “Swimming” GROUP BY country;
+
+--> Display real life number of medals India won year wise.
+select year,SUM(total) from olympic where country = “India” GROUP BY year
+
+--> Find the total number of medals each country won display the name along with total medals.
+
+Query:select country,SUM(total) from olympic GROUP BY country;
+
+--> Find the real life number of gold medals each country won.
+select country,SUM(gold) from olympic GROUP BY country;
+
+--> Which country got medals for Shooting, year wise classification?
+Select country,year from olympic where sport="shooting" group by year,country;
